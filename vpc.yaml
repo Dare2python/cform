@@ -1,0 +1,22 @@
+azSubnetPrivate:
+  Description: Choose AZ for Private subnet
+  Type: 'AWS::EC2::AvailabilityZone::Name'
+
+myVPC:
+  Type: AWS::EC2::VPC
+  Properties:
+    CidrBlock: 10.0.0.0/16
+    EnableDnsSupport: true
+    Tags:
+      - Key: Name
+        Value: myVPC
+
+subnetPrivate:
+  Type: AWS::EC2::Subnet
+  Properties: 
+    AvailabilityZone: !Ref azSubnetPrivate
+    VpcId: !Ref myVPC
+    CidrBlock: 10.0.0.0/24
+    Tags:
+      - Key: Name
+        Value: subnetPrivate
